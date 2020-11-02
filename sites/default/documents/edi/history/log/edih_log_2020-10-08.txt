@@ -1,0 +1,36 @@
+20201008:151001 EDI_History Setup should not overwrite existing data.<br>
+Setup: directory /var/www/html/openemr/sites/default/documents/edi<br>
+created folder /var/www/html/openemr/sites/default/documents/edi/history<br>
+created folder /var/www/html/openemr/sites/default/documents/edi/history/csv<br>
+created folder /var/www/html/openemr/sites/default/documents/edi/history/archive<br>
+created folder /var/www/html/openemr/sites/default/documents/edi/history/log<br>
+created folder /var/www/html/openemr/sites/default/documents/edi/history/tmp
+folder for f837 exists /var/www/html/openemr/sites/default/documents/edi<br>
+created type folder /var/www/html/openemr/sites/default/documents/edi/history/f997<br>
+created type folder /var/www/html/openemr/sites/default/documents/edi/history/f276<br>
+created type folder /var/www/html/openemr/sites/default/documents/edi/history/f277<br>
+created type folder /var/www/html/openemr/sites/default/documents/edi/history/f270<br>
+created type folder /var/www/html/openemr/sites/default/documents/edi/history/f271<br>
+created type folder /var/www/html/openemr/sites/default/documents/edi/history/f278<br>
+
+20201008:151001 _GET request 
+ srvinfo => yes  csrf_token_form => 758041877edd9e0be622f035c9ef69456bd727b3 
+20201008:151001 _GET request 
+ csvtbllist => yes  csrf_token_form => 758041877edd9e0be622f035c9ef69456bd727b3 
+20201008:151001 _GET request 
+ loglist => yes  csrf_token_form => 758041877edd9e0be622f035c9ef69456bd727b3 
+20201008:151001 _GET request 
+ archlist => yes  csrf_token_form => 758041877edd9e0be622f035c9ef69456bd727b3 
+20201008:151001 csv_archive_select_list: using /var/www/html/openemr/sites/default/documents/edi/history/archive
+20201008:151005 _GET request 
+ csrf_token_form => 758041877edd9e0be622f035c9ef69456bd727b3  process_html => htm  process_err => err  ProcessFiles => ProcessNew 
+20201008:151005 User: 127.0.0.1 - October 8, 2020, 3:09 pm
+20201008:151005 edih_disp_file_process GET vars csrf_token_form 758041877edd9e0be622f035c9ef69456bd727b3  process_html htm  process_err err  ProcessFiles ProcessNew  
+20201008:151005 csv_processed_files_list: csv file does not exist files_f837.csv
+20201008:151005 _GET request 
+ csvtbllist => yes  csrf_token_form => 758041877edd9e0be622f035c9ef69456bd727b3 
+20201008:151019 _GET request 
+ archivelog => yes  csrf_token_form => 758041877edd9e0be622f035c9ef69456bd727b3 
+20201008:151019 User: 127.0.0.1 - October 8, 2020, 3:09 pm
+20201008:151019 _GET request 
+ loglist => yes  csrf_token_form => 758041877edd9e0be622f035c9ef69456bd727b3 

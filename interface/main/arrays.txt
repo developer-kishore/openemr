@@ -1,0 +1,277 @@
+<?php
+require_once("../globals.php");
+
+$res = sqlStatement("SELECT * FROM visitor_table ORDER BY visitorid DESC");
+while ($row = sqlFetchArray($res)) {
+    $visitorid = $row['visitorid'];
+    $visitorname = $row['salutation'] . $row['fname'];
+    $dob= $row['dob'];
+    $gender =  $row['gender'];
+    $purpofvisit = $row['purposeofvisiting'];
+    $visitordetails = $row['visitordetails'];
+    $visitdate = $row['visitingdate'];
+   
+
+?>
+           <tr>
+                <td style="text-align:center;">
+                <?php echo $visitorid;?>
+                </td>
+                <td>
+                <?php echo $visitorname;?>
+                </td>
+                <td>
+                <?php echo $dob;?>
+                </td>
+                <td>
+                <?php echo  $gender;?>
+                </td>
+                <td>
+                <?php echo  $purpofvisit;?>
+                </td>
+                <td>
+                <?php echo $visitordetails;?>  
+                </td>
+                <td>
+                <?php echo $visitdate;?> 
+                </td>
+                <td>
+                <a href="formedit.php?visitorid=<?php echo $visitorid;?>">
+                <button type="button" id="edit" name="editvisitor" class="btn btn-primary">Edit</button></a> 
+                
+                <button type="button" name="deletevisitor" id="<?php echo $visitorid;?>" class="delete btn btn-danger">Delete</button>
+                </td>
+            </tr>  
+<?php
+}
+?>
+ $(document).ready(function() {
+$('#example').dataTable({
+"bProcessing": true,
+"sAjaxSource": "view.php",
+"aoColumns": [
+{ mData: 'fname' } ,
+{ mData: 'lname' },
+{mData:'mname'},
+{ mData: 'DOB' },
+{mData: 'pubpid' }
+]
+});
+}); 
+
+
+"bServerSide": true,
+     "sAjaxSource":"view_table.php",
+     "aoColumns": [
+     {"mData":"salutation"},
+     {"mData":"lname"},
+     {"mData":"visitorid"},
+     {"mData":"fname"},
+     {"mData":"dob"},
+     {"mData":"gender"},
+     {"mData":"purposeofvisiting"},
+     {"mData":"visitordetails"},
+     {"mData":"visitingdate"}
+   });
+
+   <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+
+
+
+
+  <html>
+<head>
+
+<link type= "text/css" href="http://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+<a href="form.php" class="btn btn-success">
+<button type="button" class="btn btn-default">Add Record</button></a>
+      
+  <table id="example">
+    <thead>
+    <tr>
+      <th>Sid</th>
+      <th>Sites</th>
+      <th>Sites</th>
+      <th>Sites</th>
+      <th>Sites</th>
+      <th>Sid</th>
+      <th>Sites</th>
+      <th>Sites</th>
+      <th>Sites</th>
+      </tr>
+    </thead>
+    
+  </table>
+</body>
+
+<script type="text/javascript">
+  
+  $(document).ready(function() {
+     $("#example").dataTable({
+      "bServerSide": true,
+     "sAjaxSource":"view_table.php",
+     "aoColumns": [
+     {"mData":"salutation"},
+     {"mData":"lname"},
+     {"mData":"visitorid"},
+     {"mData":"fname"},
+     {"mData":"dob"},
+     {"mData":"gender"},
+     {"mData":"purposeofvisiting"},
+     {"mData":"visitordetails"},
+     {"mData":"visitingdate"}
+     ]
+     });  
+ });
+ 
+   </script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<title>Visitors</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="../../../public/assets/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css">
+
+<script 
+
+src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script 
+
+src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script 
+
+src="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.js">
+</script>
+<link rel="stylesheet" 
+
+href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" 
+
+href="https://cdn.datatables.net/plug-ins/9dcbecd42ad/integration/jqueryui/dataTables.jqueryui.css">
+
+<script>
+$(document).ready(function(){ 
+$("#table_id tbody").load("view_table.php");
+}); 
+
+$(document).ready(function(){  
+$(".delete").click(function(){
+var element = $(this);
+var del_id = element.attr("id");
+var info = 'id=' + del_id;
+$.ajax({
+   type: "POST",
+   url: "delete.php",
+   data: info,
+   success: function(){
+ }
+});
+  });
+});
+    $(document).ready(function () {
+        $('#table_id').dataTable({
+             "pagingType": "full_numbers",
+             
+           "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+           "scrollY"  : "400px",
+          "ordering" : false,
+
+
+         });
+    });
+ 
+   
+</script>
+</head>
+
+
+<body>
+<a href="form.php" class="btn btn-default">
+      Add New Visitor <span class="glyphicon glyphicon-plus"></span>
+        </a>
+<table id="table_id" 
+
+class="table table-condensed table-striped table-hover">
+
+    <thead>
+        <tr>
+            <th>
+               Visitor ID
+            </th>
+            <th>
+               Full Name
+            </th>
+            <th>
+               Date of Birth
+            </th>
+            <th>
+               Gender
+            </th>
+            <th>
+            Purpose of Visiting
+            </th>
+            <th>
+            Visitor Details
+            </th>
+            <th>
+            Visiting Date
+            </th>
+            <th>
+            Actions 
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+   
+    </tbody>
+</table>
+
+
+</body>
+</html>
+
+
+
+ {
+            mRender: function (data, type, row) {
+                return '<a href="formedit.php class="table-edit" data="visitorid">EDIT</a>'
+            }
+        },
+         
+
+
+
+
+          {"data":"visitorid" , mRender : function (data){
+               return '<a href="formedit.php?visitorid='+ data +'" ><button type="button" class="btn btn-primary">Edit</button></a>'
+               '<a href="formedit.php?visitorid='+ data +'" ><button type="button" class="btn btn-primary">Edit</button></a>'      
+          }},
